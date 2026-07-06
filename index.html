@@ -72,7 +72,7 @@
                         const savedInfo = document.getElementById('savedInfo');
 
                         try {
-                            const response = await fetch("users.json"), {
+                            const response = await fetch('http://localhost:3001/api/signup', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -278,7 +278,7 @@
     const loginMessage = document.getElementById('loginMessage');
 
     try {
-      const response = await fetch("users.json"), {
+      const response = await fetch('http://localhost:3001/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
