@@ -10,6 +10,7 @@ app.get("/", (req, res) => {
 });
 
 const allowedOrigins = [
+    "http://localhost:3000",
     "https://ayushp254-sycle.vercel.app"
 ];
 
@@ -38,7 +39,7 @@ function saveUsers(users) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(users, null, 2), 'utf8');
 }
 
-app.post('/api/signup', (req, res) => {
+app.post('/signup', (req, res) => {
   const { firstName, lastName, email, pwd, phone, address, zipcode, city, state, country, option } = req.body;
 
   if (!firstName || !lastName || !email || !pwd || !phone || !address || !zipcode || !city || !state || !country || !option) {
@@ -74,7 +75,7 @@ app.post('/api/signup', (req, res) => {
   return res.status(201).json({ message: 'User registered successfully.', user: { id: newUser.id, firstName, lastName, email, phone, address, zipcode, city, state, country, option } });
 });
 
-app.post('/api/login', (req, res) => {
+app.post("/login", (req, res) => {
   const { email, pwd } = req.body;
 
   if (!email || !pwd) {
@@ -91,7 +92,7 @@ app.post('/api/login', (req, res) => {
   return res.status(200).json({ message: 'Login successful.', user: { id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, phone: user.phone, address: user.address, zipcode: user.zipcode, city: user.city, state: user.state, country: user.country, option: user.option } });
 });
 
-app.put('/api/users/:id', (req, res) => {
+app.put("/users/:id", (req, res) => {
   const { id } = req.params;
   const { firstName, lastName, phone, address, city, state, country, email, password } = req.body;
 
