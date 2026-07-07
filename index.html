@@ -427,6 +427,9 @@
   async function handleProfileUpdate(event) {
     event.preventDefault();
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    fetch(`https://bisycle.onrender.com/users/${currentUser.id}`, {
+      method: "PUT",
+    });
     const profileMessage = document.getElementById('profileMessage');
 
     if (!currentUser) return;
