@@ -1,14 +1,23 @@
 const express = require('express');
+const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const DATA_FILE = path.join(__dirname, 'users.json');
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+const allowedOrigins = [
+    "http://localhost:3000",
+    "https://your-project.vercel.app"
+];
+
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true
+}));
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 function loadUsers() {
   try {
